@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+// #[ApiResource]
 class Category
 {
     public function __toString() {
@@ -41,6 +43,7 @@ class Category
     private ?\DateTimeInterface $deleted_at = null;
 
     #[ORM\OneToMany(mappedBy: 'category_id', targetEntity: Product::class)]
+    #[Groups('css')]
     private Collection $products;
 
     public function __construct()

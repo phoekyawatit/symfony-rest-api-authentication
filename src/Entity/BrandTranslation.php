@@ -2,22 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use App\Repository\ActivityRepository;
+use App\Repository\BrandTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Blameable\Traits\BlameableEntity;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Symfony\Component\Serializer\Annotation\Groups;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\OpenApi\Model;
-use App\Controller\CreateMediaObjectAction;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
-#[ORM\Entity(repositoryClass: ActivityRepository::class)]
-#[ApiResource]
-class Activity
+#[ORM\Entity(repositoryClass: BrandTranslationRepository::class)]
+class BrandTranslation implements TranslationInterface
 {
-    use TimestampableEntity;
-    use BlameableEntity;
+    use TranslationTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
